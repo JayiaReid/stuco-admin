@@ -1,13 +1,19 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { GraduationCapIcon, HandIcon, LayoutIcon, SettingsIcon } from 'lucide-react'
 import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
+import { usePathname } from 'next/navigation'
 
 const SideNav = () => {
 
     const {user} = useKindeBrowserClient();
+
+    const path = usePathname()
+    useEffect(()=>{
+        console.log(path)
+    })
 
     const menu = [
        {
@@ -44,7 +50,8 @@ const SideNav = () => {
 
         {menu.map((item, index)=>(
             <Link key={index} href={item.path}>
-                <h2 className='flex items-center gap-3 text-md p-4 hover:bg-primary my-2 rounded-lg cursor-pointer text-slate-500'>
+                <h2 
+                className={`${path==item.path&& 'bg-primary text-white'} flex items-center gap-3 text-md p-4 hover:bg-primary hover:text-primary-foreground my-2 rounded-lg cursor-pointer text-slate-500`}>
                     <item.icon/>
                     {item.name}
                 </h2>

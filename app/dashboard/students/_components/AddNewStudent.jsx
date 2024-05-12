@@ -19,7 +19,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import { Calendar as CalendarIcon, Loader2Icon } from "lucide-react"
 
 import {
     Select,
@@ -31,8 +31,11 @@ import {
 
 import { useForm } from 'react-hook-form'
 import GlobalApi from '@/app/_services/GlobalApi'
+import { toast } from 'sonner'
 
 const AddNewStudent = () => {
+
+    const [loading, setLoading]=useState(false)
 
     const [open, setOpen] = useState(false)
     const [date, setDate] = useState()
@@ -49,9 +52,6 @@ const AddNewStudent = () => {
         grade: ''
     })
     const {
-        register,
-        handleSubmit,
-        watch,
         formState: { errors },
       } = useForm()
 
@@ -59,6 +59,19 @@ const AddNewStudent = () => {
         getGradesList()
         getSchList()
     }, [])
+
+    const reset = ()=>{
+        setStudent({
+            fname: '',
+            lname: '',
+            email: '',
+            DOB: null,
+            stud_ID: '',
+            passwrd: '',
+            sch_ID: '',
+            grade: ''
+        })
+    }
 
     const getSchList = ()=>{
         GlobalApi.GetSchools().then(res=>{
@@ -75,17 +88,24 @@ const AddNewStudent = () => {
       }
 
       const onSubmit = (e) => {
+        setLoading(true)
         e.preventDefault()
         console.log(student)
         GlobalApi.createStudent(student).then(res=>{
             console.log('--', res)
+            if(res.data){
+               handleClose(e) 
+               toast('New Student Added')
+            }
+            setLoading(false)
         }).catch(err=>console.log(err))
-        handleClose(e)
+        
       }
 
       const handleClose = (e)=>{
         e.preventDefault()
         setOpen(false)
+        reset()
       }
 
       const handleChange = (e) => {
@@ -167,8 +187,8 @@ const AddNewStudent = () => {
                     </div>
                     
                     <div className='flex gap-3 items-center justify-end mt-5'>
-                        <Button><p onClick={handleClose} variant='ghost' >Cancel</p></Button>
-                        <Button onClick={onSubmit}>Save</Button>
+                        <Button onClick={handleClose} variant='ghost'>Cancel</Button>
+                        <Button disable={loading} onClick={onSubmit}>Save {loading && <Loader2Icon className='animate-spin'/>}</Button>
                     </div>
                     </form>
                    

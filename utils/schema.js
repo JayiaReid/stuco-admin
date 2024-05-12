@@ -1,4 +1,4 @@
-import {char, int, mysqlTable, varchar } from "drizzle-orm/mysql-core";
+import {char, int, mysqlTable, varchar,boolean, tinyint } from "drizzle-orm/mysql-core";
 
 export const GRADES=mysqlTable('grades',{
     grade_id:int('grade_id'),
@@ -12,14 +12,14 @@ export const LEVELS=mysqlTable('levels',{
 })
 
 export const STUDENT=mysqlTable('students',{
-    stud_ID:int('stud_ID').primaryKey(),
+    userID:int('userID').primaryKey(),
+    stud_ID:int('stud_ID').notNull(),
     fname:varchar('fname', {length:50}).notNull(),
     lname:varchar('lname', {length:50}).notNull(),
     email:varchar('email', {length:100}).notNull().unique(),
-    // user_ID:int('user_ID').notNull().unique(),
-    sch_ID:int('sch_ID').primaryKey(),
+    sch_ID:int('sch_ID').notNull(),
     passwrd:varchar('passwrd',{length:20}).notNull(),
-    grade:varchar('grade',{length: 40})
+    grade:varchar('grade',{length: 40}),
 })
 
 export const SCHOOL=mysqlTable('schools',{
@@ -28,4 +28,13 @@ export const SCHOOL=mysqlTable('schools',{
     level_ID:int('level_ID').notNull(),
     region:char('region',{length:2}).notNull(),
     country:char('country',{length:3})
+})
+
+export const ATTENDANCE=mysqlTable('attendance',{
+    id:int('id').primaryKey().autoincrement(),
+    stud_ID:int('stud_ID').notNull(),
+    sch_ID:int('sch_ID').notNull(),
+    present:tinyint('present').default(0),
+    day:int('day', {length: 2}).notNull(),
+    date:varchar('date', {length: 20}).notNull() //month and year
 })
