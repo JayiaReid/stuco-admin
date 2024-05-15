@@ -92,7 +92,7 @@ const StudentList = ({ students, refreshData }) => {
           <input className='outline-none bg-transparent' type='text' placeholder='Search' onChange={(e) => setsearch(e.target.value)} />
         </div>
         
-          <AgGridReact
+          <AgGridReact className='z-[-1]'
             rowData={rows}
             columnDefs={cols}
             quickFilterText={search}

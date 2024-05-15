@@ -11,7 +11,7 @@ export async function POST(req, res){
         fname: data?.fname,
         lname: data?.lname,
         email: data?.email,
-        // DOB: null,
+        userID: data?.userID,
         stud_ID: data?.stud_ID,
         passwrd: data?.passwrd,
         sch_ID: data?.sch_ID,

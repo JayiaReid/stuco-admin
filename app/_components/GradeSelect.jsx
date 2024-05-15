@@ -8,7 +8,7 @@ const GradeSelect = ({selectedGrade}) => {
 
     const getGradesList = ()=>{
         GlobalApi.GetGrades().then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             setGrades(res.data)
         })
       }
@@ -16,6 +16,7 @@ const GradeSelect = ({selectedGrade}) => {
       useEffect(()=>{
         getGradesList()
       }, [])
+      
     return (
         <div>
             <select className="p-2 border rounded-lg bg-transparent" name="grade" onChange={(e)=>selectedGrade(e.target.value)}>
