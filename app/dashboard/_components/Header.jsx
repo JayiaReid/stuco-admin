@@ -27,6 +27,7 @@ const Header = ({showNav}) => {
         <h1 className='font-bold text-xl'><span className='text-[#ffbf00]'>StuCo:</span><span className='text-[#54f7f8]'> Admin</span> <span className='text-primary'>Dashboard</span></h1>
         </div>
         <div>
+          
             <Image src={user?.picture} width={35} height={35} alt="user" className="rounded-full"/>
         </div>
     </div>

@@ -23,9 +23,9 @@ const Dashboard = () => {
   const [totalPresentData, setTotalPresentData] = useState([])
   const [monthData, setMonthData] = useState([])
 
-  useEffect(() => {
-    setTheme("system")
-  }, [])
+  // useEffect(() => {
+  //   setTheme("system")
+  // }, [])
 
   useEffect(() => {
     fetchData(selectedMonth, selectedGrade, selectedSchool);

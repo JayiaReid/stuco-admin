@@ -34,7 +34,7 @@ const Profile = () => {
       - profile photo, name, school */}
         <Avatar className='mx-10 h-[200px] w-auto rounded-full shadow-lg'>
           <AvatarImage width={35} alt='user' src={user?.picture} />
-          <AvatarFallback><Image src={user?.picture} width={35} height={35} alt='user' /></AvatarFallback>
+          <AvatarFallback><Image src="https://github.com/shadcn.png" width={35} height={35} alt='user' /></AvatarFallback>
         </Avatar>
         <div>
           <h2 className='text-lg font-bold '>{user?.given_name} {user?.family_name}</h2>

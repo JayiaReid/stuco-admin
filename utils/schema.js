@@ -45,3 +45,13 @@ export const STUDYSTATS = mysqlTable('studystats', {
     loginDate: date('loginDate'),
     weekDay: varchar('weekDay', { length: 20 }),
 })
+
+export const ADMIN = mysqlTable('admin', {
+    adminID: int('adminID').primaryKey().autoincrement(),
+    fname: varchar('fname', {length: 45}).notNull(),
+    lname: varchar('lname', {length: 45}).notNull(),
+    role: varchar('role', {length: 45}).notNull(),
+    startDate:date('startDate').notNull(),
+    email:varchar('email',{length: 45}).notNull(),
+    userID: varchar('userID', {length: 100}).unique()
+})

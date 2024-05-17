@@ -39,7 +39,7 @@ const Attendance = () => {
             <h2 className='text-2xl font-bold'>Attendance</h2>
             {/* Search Option */}
 
-            <div className='sm:flex-col flex-row flex md:flex-col gap-4 p-5 my-5'>
+            <div className='sm:flex-col flex-row flex md:flex-row gap-4 p-5 my-5'>
                 <div className='flex items-center gap-2'>
                     <label>Select Month: </label>
                     <MonthSelect selectedMonth={(value)=>setselectedMonth(value)} />
@@ -54,7 +54,7 @@ const Attendance = () => {
                 </div>
                 <Button onClick={()=>onSearchHandle()}>Search</Button>
             </div>
-
+            
             {/* student attendance grid */}
             <AttendanceGrid selectedMonth={selectedMonth} attendances={attendances}/>
         </div>
